@@ -2,7 +2,7 @@
 #include <vector>
 
 namespace Sorting {
-	// This namespace will implement some common sort algorithm, the time complexity of each algorithm is considered in average case.
+	// This namespace will implement some common sort algorithm, the time complexity of each algorithm is considered on average case.
 	namespace SelectionSort 
 	{
 		template <typename T>
@@ -154,7 +154,7 @@ namespace Sorting {
 			// and partitions the given array around the picked pivot by placing the pivot in its correct position in the sorted array.
 
 			// Time complexity: O(N * log(N)) 
-			// Auxiliary complexity: O(1), if we don’t consider the recursive stack space.
+			// Auxiliary complexity: O(1), if we donâ€™t consider the recursive stack space.
 
 			quickSort(arr, 0, arr.size() - 1);
 		}
