@@ -2,7 +2,7 @@
 #include <vector>
 
 namespace Sorting {
-	// This namespace will implement some common sort algorithm, the time complexity of each algorithm is considered on average case.
+	// In this namespace, I will implement some common sort algorithm, the time complexity of each algorithm is considered on average case.
 	namespace SelectionSort 
 	{
 		template <typename T>
