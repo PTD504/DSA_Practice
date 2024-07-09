@@ -19,6 +19,7 @@ public:
 	void push(T);
 	void pop();
 	T top() const;
+	size_t size() const;
 	bool isEmpty() const;
 };
 
@@ -48,6 +49,11 @@ T Stack<T>::top() const {
 	}
 
 	return this->container[this->it_top - 1];
+}
+
+template <typename T>
+size_t Stack<T>::size() const {
+	return size_t(it_top);
 }
 
 template <typename T>
