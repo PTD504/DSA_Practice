@@ -128,9 +128,9 @@ namespace Sorting {
 			if (l >= h) return;
 
 			int i = l, j = h;
+			auto x = arr[i + ((j - i) >> 1)];
 
 			while (i < j) {
-				auto x = arr[i + ((j - i) >> 1)];
 
 				while (arr[i] < x) i++;
 				while (arr[j] > x) j--;
