@@ -1,6 +1,5 @@
 from typing import Optional
 
-# Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -24,7 +23,25 @@ class Solution:
         return head
     
     def __removeNthFromEnd_optimized(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        pass
+        node = ListNode(0, head)
+        fast = slow = node
+
+        while n > 0:
+            fast = fast.next
+            n -= 1
+        
+        if not fast.next:
+            slow.next = slow.next.next
+
+            return slow.next
+        else:
+            while fast.next:
+                fast = fast.next
+                slow = slow.next
+            
+            slow.next = slow.next.next
+
+            return head
     
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         sz = 0
