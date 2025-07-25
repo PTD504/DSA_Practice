@@ -1,6 +1,6 @@
 // A tree data structure is a hierarchical data structure that consists of nodes connected by edges.
-#include "Stack.h"
-#include "Queue.h"
+#include "../Stack/Stack.h"
+#include "../Queue/Queue.h"
 
 template <typename T>
 class BinarySearchTree {
