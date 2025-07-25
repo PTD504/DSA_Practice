@@ -88,4 +88,76 @@ namespace Searching
 			// Auxiliary space: O(1)
 		}
 	}
+
+	namespace QuickSelect
+	{
+		// This function partitions the array around a pivot, moving elements greater than the pivot to the left.
+		template<typename T>
+		int partition(std::vector<T> &arr, int l, int h, const T &pivot) {
+			int store_index = l;
+
+			for (int i = l; i <= h; ++i) {
+				if (arr[i] > pivot) { // Change the condition to < if you want to find the k-th smallest element
+					std::swap(arr[i], arr[store_index]);
+					store_index++;
+				}
+			}
+
+			return store_index;
+		}
+
+		// The QuickSelect algorithm is a selection algorithm to find the k-th smallest element in an unordered list.
+		// Below are two implementations: one recursive and one iterative.
+		
+		// Recursive implementation
+		template<typename T>
+		T quickSelect(std::vector<T> &arr, int l, int h, const int &k) {
+			if (l == h) return arr[l];
+
+			int pivot_index = rand() % (h - l + 1) + l;
+			pivot_index = partition(arr, l, h, arr[pivot_index]);
+
+			if (k == pivot_index) 
+				return arr[k];
+			else if (k < pivot_index) 
+				return quickSelect(arr, l, pivot_index - 1, k);
+			else 
+				return quickSelect(arr, pivot_index + 1, h, k);
+		}
+
+		// Iterative implementation
+		template<typename T>
+		T quickSelect_iterative(std::vector<T> &arr, int l, int h, const int &k) {
+			while (l < h) {
+				int pivot_index = rand() % (h - l + 1) + l;
+				pivot_index = partition(arr, l, h, arr[pivot_index]);
+
+				if (k == pivot_index)
+					return arr[k];
+				else if (k < pivot_index) 
+					h = pivot_index - 1;
+				else 
+					l = pivot_index + 1;
+			}
+
+			return arr[l];
+		}
+
+		template<typename T>
+		T search(std::vector<T> &arr, const int &k) {
+			if (k < 0 || k >= arr.size()) {
+				throw std::out_of_range("Index k is out of bounds of the array.");
+			}
+
+			// Randomly shuffle the array to ensure average-case performance
+			std::random_device rd;
+			std::mt19937 g(rd());
+			std::shuffle(arr.begin(), arr.end(), g);
+
+			return quickSelect(arr, 0, arr.size() - 1, k);
+
+			// Time Complexity: O(N) on average, O(N^2) in the worst case
+			// Auxiliary space: O(1)
+		}
+	}
 }
